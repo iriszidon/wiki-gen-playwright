@@ -1,5 +1,6 @@
 using Microsoft.Playwright;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GenWikiTests.Pages;
 
 namespace GenWikiTests.Tests;
 
@@ -8,11 +9,14 @@ namespace GenWikiTests.Tests;
 public class ExampleTest : BaseTest
 {
     [TestMethod]
-    public async Task SayHiTest()
+    [TestCategory("Navigation")]
+    public async Task NavigateToWikiHomePageTest()
     {
         var page = await _browser.NewPageAsync();
-        await page.GotoAsync("https://playwright.dev");
+        var wiki = new PlaywrightWikiPage(page);
+        await wiki.NavigateAsync();
 
-        StringAssert.Contains(await page.TitleAsync(), "Playwright");
+        var title = await page.TitleAsync();
+        Assert.IsTrue(title.Contains("Playwright (software)"), $"Unexpected title: {title}");
     }
 }
