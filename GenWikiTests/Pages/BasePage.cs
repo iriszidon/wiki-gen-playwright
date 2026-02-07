@@ -1,6 +1,7 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
 using DotNetEnv;
+using GenWikiTests.Helpers;
 namespace GenWikiTests.Pages;
 
 
@@ -12,11 +13,11 @@ public class BasePage
     {
         _page = page;
         DebuggingFeaturesLink = _page.Locator("a:has-text(\"Debugging features\")");
-        string currentDirectory = GetCurrentDirectory();
-        string parentDirectory = GetParentDirectory(currentDirectory);
-        string levelTwoDirectory = GetParentDirectory(parentDirectory);
-        string levelTreeDirectory = GetParentDirectory(levelTwoDirectory);
-        string levelFourDirectory = GetParentDirectory(levelTreeDirectory);
+        string currentDirectory = DirectoryUtils.GetCurrentDirectory();
+        string parentDirectory = DirectoryUtils.GetParentDirectory(currentDirectory);
+        string levelTwoDirectory = DirectoryUtils.GetParentDirectory(parentDirectory);
+        string levelTreeDirectory = DirectoryUtils.GetParentDirectory(levelTwoDirectory);
+        string levelFourDirectory = DirectoryUtils.GetParentDirectory(levelTreeDirectory);
         Console.WriteLine($"levelFourDirectory: {levelFourDirectory}");
         Env.Load($"{levelFourDirectory}\\.env"); // loads .env from project root
 
@@ -30,21 +31,5 @@ public class BasePage
 
     public Task ClickDebuggingFeaturesAsync() => DebuggingFeaturesLink.ClickAsync();
 
-
-    // Returns the current directory of the application
-    private string GetCurrentDirectory()
-    {
-        return Directory.GetCurrentDirectory();
-    }
-
-    // Receives a directory path and returns its parent directory
-    private string GetParentDirectory(string directoryPath)
-    {
-        if (string.IsNullOrEmpty(directoryPath))
-            throw new ArgumentException("Directory path cannot be null or empty.", nameof(directoryPath));
-
-        var parent = Directory.GetParent(directoryPath);
-        return parent?.FullName ?? string.Empty;
-    }
 
 }
