@@ -8,7 +8,7 @@ namespace GenWikiTests.Tests;
 public class ExampleTest : BaseTest
 {
     [TestMethod]
-    public async Task SampleTest()
+    public async Task SayHiTest()
     {
         var page = await _browser.NewPageAsync();
         await page.GotoAsync("https://playwright.dev");
