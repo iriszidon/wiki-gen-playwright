@@ -5,31 +5,14 @@ namespace GenWikiTests.Tests;
 
 
 [TestClass]
-public class ExampleTest
+public class ExampleTest : BaseTest
 {
-    private IBrowser _browser;
-    private IPlaywright _playwright;
-
-    [TestInitialize]
-    public async Task Setup()
-    {
-        _playwright = await Playwright.CreateAsync();
-        _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false, SlowMo = 750 });
-    }
-
     [TestMethod]
-    public async Task HomepageShouldHaveTitle()
+    public async Task SampleTest()
     {
         var page = await _browser.NewPageAsync();
         await page.GotoAsync("https://playwright.dev");
 
         StringAssert.Contains(await page.TitleAsync(), "Playwright");
-    }
-
-    [TestCleanup]
-    public async Task Cleanup()
-    {
-        await _browser.CloseAsync();
-        _playwright.Dispose();
     }
 }
