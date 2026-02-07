@@ -10,6 +10,7 @@ public class ExampleTest : BaseTest
 {
     [TestMethod]
     [TestCategory("Navigation")]
+    [DescriptionAttribute("Count unique words using UI and API and compare results")]
     public async Task NavigateToWikiHomePageTest()
     {
         var page = await _browser.NewPageAsync();
