@@ -1,7 +1,9 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
-
+using DotNetEnv;
+using System;
 namespace GenWikiTests.Pages;
+
 
 public class BasePage
 {
@@ -11,9 +13,10 @@ public class BasePage
     {
         _page = page;
         DebuggingFeaturesLink = _page.Locator("a:has-text(\"Debugging features\")");
+        Env.Load("C:\\Playwright\\wiki-gen-playwright\\.env"); // loads .env from project root
     }
 
-    public string Url => "https://en.wikipedia.org/wiki/Playwright_(software)";
+    public string Url => Environment.GetEnvironmentVariable("BASE_URL");
 
     public ILocator DebuggingFeaturesLink { get; }
 
