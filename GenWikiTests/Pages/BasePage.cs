@@ -13,13 +13,9 @@ public class BasePage
     {
         _page = page;
         DebuggingFeaturesLink = _page.Locator("a:has-text(\"Debugging features\")");
-        string currentDirectory = DirectoryUtils.GetCurrentDirectory();
-        string parentDirectory = DirectoryUtils.GetParentDirectory(currentDirectory);
-        string levelTwoDirectory = DirectoryUtils.GetParentDirectory(parentDirectory);
-        string levelTreeDirectory = DirectoryUtils.GetParentDirectory(levelTwoDirectory);
-        string levelFourDirectory = DirectoryUtils.GetParentDirectory(levelTreeDirectory);
-        Console.WriteLine($"levelFourDirectory: {levelFourDirectory}");
-        Env.Load($"{levelFourDirectory}\\.env"); // loads .env from project root
+        string envFileDirectory = DirectoryUtils.GetNthParentDirectory(4);
+        Console.WriteLine($"envFileDirectory ------> : {envFileDirectory}");
+        Env.Load($"{envFileDirectory}\\.env"); // loads .env from project root
 
     }
 
