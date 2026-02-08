@@ -14,10 +14,14 @@ public class ExampleTest : BaseTest
     public async Task NavigateToWikiHomePageTest()
     {
         var page = await _browser.NewPageAsync();
-        var wiki = new PlaywrightWikiPage(page);
-        await wiki.NavigateAsync();
+        var wikiPlaywrightMainPage = new PlaywrightWikiPage(page);
+        await wikiPlaywrightMainPage.NavigateAsync();
 
-        var title = await page.TitleAsync();
-        Assert.IsTrue(title.Contains("Playwright (software)"), $"Unexpected title: {title}");
+        // var title = await page.TitleAsync();
+        // Assert.IsTrue(title.Contains("Playwright (software)"), $"Unexpected title: {title}");
+        await wikiPlaywrightMainPage.ClickDebuggingFeaturesAsync();
+        DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(page);
+        string sectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
+        Assert.IsFalse(string.IsNullOrEmpty(sectionText), "Section text should not be empty.");
     }
 }
