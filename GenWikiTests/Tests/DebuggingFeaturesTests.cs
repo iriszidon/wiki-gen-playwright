@@ -9,7 +9,7 @@ namespace GenWikiTests.Tests;
 public class ExampleTest : BaseTest
 {
     [TestMethod]
-    [TestCategory("Navigation")]
+    [TestCategory("WordCount")]
     [DescriptionAttribute("Count unique words using UI and API and compare results")]
     public async Task NavigateToWikiHomePageTest()
     {
@@ -22,6 +22,7 @@ public class ExampleTest : BaseTest
         await wikiPlaywrightMainPage.ClickDebuggingFeaturesAsync();
         DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(page);
         string sectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
+        Console.WriteLine($"Normalized section text: \n{sectionText}");
         Assert.IsFalse(string.IsNullOrEmpty(sectionText), "Section text should not be empty.");
     }
 }
