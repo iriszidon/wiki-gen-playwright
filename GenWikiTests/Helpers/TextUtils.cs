@@ -66,6 +66,19 @@ namespace GenWikiTests.Helpers
             // Trim edges and lowercase; keeps only alphabet characters and whitespace
             return sb.ToString().Trim().ToLowerInvariant();
         }
+
+        public static HashSet<string> CountUniqueWords(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return new HashSet<string>();
+
+            var words = text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            var uniqueWords = new HashSet<string>(words);
+            foreach (var word in uniqueWords)
+            {
+                Console.WriteLine(word);
+            }
+            return uniqueWords;
+        }
     }
 }
 

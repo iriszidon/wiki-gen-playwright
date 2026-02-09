@@ -13,15 +13,23 @@ public class ExampleTest : BaseTest
     [DescriptionAttribute("Count unique words using UI and API and compare results")]
     public async Task GetTextFromUITest()
     {
+        //Todo: Move this to before test setup and reuse page object across tests in the class
         var page = await _browser.NewPageAsync();
         var wikiPlaywrightMainPage = new PlaywrightWikiPage(page);
         await wikiPlaywrightMainPage.NavigateAsync();
 
         await wikiPlaywrightMainPage.ClickDebuggingFeaturesAsync();
         DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(page);
-        string sectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
-        Console.WriteLine($"Normalized section text: \n{sectionText}");
-        Assert.IsFalse(string.IsNullOrEmpty(sectionText), "Section text should not be empty.");
+        string uiSectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
+        Console.WriteLine(TextUtils.CountUniqueWords(uiSectionText));
+        // Get the text using Wki Parse API 
+        string apiSectionText = await ApiUtils.GetDebuggingFeaturesWikiTextAsync("json", "Playwright_(software)", 5);
+        string sectionTextWithoutWikiRef = TextUtils.RemoveWikiReferenceToolTip(apiSectionText, "ref");
+        string normalizedSectionText = TextUtils.NormalizeTextWithCharsOnly(sectionTextWithoutWikiRef);
+        // Compare the results
+        HashSet<string> uiUniqueWordCount = TextUtils.CountUniqueWords(uiSectionText);
+        HashSet<string> apiUniqueWordCount = TextUtils.CountUniqueWords(normalizedSectionText);
+        Assert.AreEqual(uiUniqueWordCount.Count, apiUniqueWordCount.Count, "Unique word count should match between UI and API results.");
     }
 
 
@@ -35,5 +43,15 @@ public class ExampleTest : BaseTest
         Console.WriteLine($"Original wikitext from API: \n{sectionText}");
         Console.WriteLine($"Normalized wikitext from API: \n{normalizedSectionText}");
         Assert.IsFalse(string.IsNullOrEmpty(normalizedSectionText), "Section text from API should not be empty.");
+    }
+
+
+    [TestMethod]
+    public void CountUniqueWords_Test()
+    {
+        string input = "Hello world Hello everyone Welcome to the world of testing".ToLower();
+        HashSet<string> uniqueWordCount = TextUtils.CountUniqueWords(input);
+        Console.WriteLine($"Unique word count: {uniqueWordCount.Count}");
+        Assert.AreEqual(8, uniqueWordCount.Count, "Unique word count should be 8.");
     }
 }
