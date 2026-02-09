@@ -1,5 +1,3 @@
-using Microsoft.Playwright;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GenWikiTests.Pages;
 using GenWikiTests.Helpers;
 namespace GenWikiTests.Tests;

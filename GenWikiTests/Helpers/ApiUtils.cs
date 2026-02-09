@@ -1,5 +1,5 @@
 using DotNetEnv;
-using System.Text.Json.Serialization;
+using GenWikiTests.Structures;
 
 namespace GenWikiTests.Helpers
 {
@@ -7,24 +7,6 @@ namespace GenWikiTests.Helpers
     {
         static string BASE_URL = Environment.GetEnvironmentVariable("API_URL");
         private static string WIKI_USER = Environment.GetEnvironmentVariable("WIKI_USER");
-
-        //Get rid of this method
-        public static async Task<string> GetDebuggingFeaturesTextAsync(string format, string pageTitle, int sectionNumber, CancellationToken cancellationToken = default)
-        {
-            LoadEnvVariables();
-            var client = new HttpClient();
-            // Per Wikimedia policy: include identifying UA with contact URL/email
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(WIKI_USER);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"{BASE_URL}?action=parse&format={format}&formatversion=2&page={pageTitle}&prop=text&section={sectionNumber}");
-
-            Console.WriteLine($"Request URL:\n ---- {request.RequestUri}");
-            var response = await client.SendAsync(request);
-
-            response.EnsureSuccessStatusCode();
-            string content = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(content);
-            return content;
-        }
 
         public static async Task<string> GetDebuggingFeaturesWikiTextAsync(string format, string pageTitle, int sectionNumber, string textProp = "wikitext", CancellationToken cancellationToken = default)
         {
@@ -52,26 +34,6 @@ namespace GenWikiTests.Helpers
             Console.WriteLine($"envFileDirectory ------> : {envFileDirectory}");
             Env.Load($"{envFileDirectory}\\.env"); // loads .env from project root
         }
-    }
-
-
-
-    public class ParseResponse
-    {
-        [JsonPropertyName("parse")]
-        public ParseData Parse { get; set; }
-    }
-
-    public class ParseData
-    {
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("pageid")]
-        public int PageId { get; set; }
-
-        [JsonPropertyName("wikitext")]
-        public string WikiText { get; set; }
     }
 }
 
