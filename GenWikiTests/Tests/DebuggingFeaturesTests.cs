@@ -17,8 +17,6 @@ public class ExampleTest : BaseTest
         var wikiPlaywrightMainPage = new PlaywrightWikiPage(page);
         await wikiPlaywrightMainPage.NavigateAsync();
 
-        // var title = await page.TitleAsync();
-        // Assert.IsTrue(title.Contains("Playwright (software)"), $"Unexpected title: {title}");
         await wikiPlaywrightMainPage.ClickDebuggingFeaturesAsync();
         DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(page);
         string sectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
@@ -26,17 +24,16 @@ public class ExampleTest : BaseTest
         Assert.IsFalse(string.IsNullOrEmpty(sectionText), "Section text should not be empty.");
     }
 
+
     [TestMethod]
-    [TestCategory("Sample")]
-    public async Task GetTextFromApiTest()
+    [TestCategory("Wikitext")]
+    public async Task GetWikiTextFromApiTest()
     {
-        string sectionText = await ApiUtils.GetDebuggingFeaturesTextAsync("json", "Playwright_(software)", 5);
-        string plainSectionText = JsonToHtmlConverterUtil.ExtractPlainTextFromParseJson(sectionText);
-        string normalizedSectionText = TextUtils.NormalizeTextWithCharsOnly(plainSectionText);
-
-        Console.WriteLine($"Plain text from API: \n{plainSectionText}");
-        Console.WriteLine($"Characters-only text from API: \n{normalizedSectionText}");
-
-        Assert.IsFalse(string.IsNullOrEmpty(plainSectionText), "Section text from API should not be empty.");
+        string sectionText = await ApiUtils.GetDebuggingFeaturesWikiTextAsync("json", "Playwright_(software)", 5);
+        string sectionTextWithoutWikiRef = TextUtils.RemoveWikiReferenceToolTip(sectionText, "ref");
+        string normalizedSectionText = TextUtils.NormalizeTextWithCharsOnly(sectionTextWithoutWikiRef);
+        Console.WriteLine($"Original wikitext from API: \n{sectionText}");
+        Console.WriteLine($"Normalized wikitext from API: \n{normalizedSectionText}");
+        Assert.IsFalse(string.IsNullOrEmpty(normalizedSectionText), "Section text from API should not be empty.");
     }
 }
