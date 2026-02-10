@@ -32,14 +32,10 @@
 
 ## Add reports by
 
-- allure generate TestResults/ --clean
-- allure open
+- `allure generate TestResults/ --clean`
+- `allure open`
 
 ## Assumptions
 
 - env file is supplied
 - .env file path is <Any path>\wiki-gen-playwright\.env
-
-```
-
-```
