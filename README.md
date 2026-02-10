@@ -3,13 +3,15 @@
 ## Install using the terminal
 
 `dotnet --version `
+-n GenWikiTests - initialize a new projecat named GenWikiTests using MS tests
 
-- dotnet new mstest -n GenWikiTests - initialize a new projecat named GenWikiTests using MS tests
-- cd GenWikiTests
-- dotnet add package Microsoft.Playwright.MSTest
-- playwright install
-- dotnet add package DotNetEnv
-- dotnet add package Allure.Commons
+````
+dotnet new mstest
+cd GenWikiTests
+dotnet add package Microsoft.Playwright.MSTest
+playwright install
+dotnet add package DotNetEnv
+dotnet add package Allure.Commons```
 
 ## Add .env file
 
@@ -37,3 +39,4 @@
 
 - env file is supplied
 - .env file path is <Any path>\wiki-gen-playwright\.env
+````
