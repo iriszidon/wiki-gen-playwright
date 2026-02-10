@@ -2,7 +2,8 @@
 
 ## Install using the terminal
 
-- dotnet --version
+`dotnet --version `
+
 - dotnet new mstest -n GenWikiTests - initialize a new projecat named GenWikiTests using MS tests
 - cd GenWikiTests
 - dotnet add package Microsoft.Playwright.MSTest
