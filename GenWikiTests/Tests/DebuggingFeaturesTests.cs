@@ -1,6 +1,5 @@
 using GenWikiTests.Pages;
 using GenWikiTests.Helpers;
-using Allure.Commons;
 
 
 namespace GenWikiTests.Tests
@@ -13,13 +12,10 @@ namespace GenWikiTests.Tests
         [DescriptionAttribute("Count unique words using UI and API and compare results")]
         public async Task GetTextFromUITest()
         {
-            //Todo: Move this to before test setup and reuse page object across tests in the class
-            var page = await _browser.NewPageAsync();
-            var wikiPlaywrightMainPage = new PlaywrightWikiPage(page);
+            var wikiPlaywrightMainPage = new PlaywrightWikiPage(_page);
             await wikiPlaywrightMainPage.NavigateAsync();
-
             await wikiPlaywrightMainPage.ClickDebuggingFeaturesAsync();
-            DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(page);
+            DebuggingFeaturesSectionPage debuggingFeaturesSectionPage = new DebuggingFeaturesSectionPage(_page);
             string uiSectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
             Console.WriteLine(TextUtils.CountUniqueWords(uiSectionText));
             // Get the text using Wki Parse API 
