@@ -1,2 +1,38 @@
-# wiki-gen-playwright
-c# Playwright with test cased to some UI and some API.
+# Welcome to the Wiki-Playwright demo test project :)
+
+## Install using the terminal
+
+- dotnet --version
+- dotnet new mstest -n GenWikiTests - initialize a new projecat named GenWikiTests using MS tests
+- cd GenWikiTests
+- dotnet add package Microsoft.Playwright.MSTest
+- playwright install
+- dotnet add package DotNetEnv
+- dotnet add package Allure.Commons
+
+## Add .env file
+
+- Create a .env file directly under the root folder wiki-gen-playwrite
+- Copy all the fileds from .env.example file into .env file
+- The automation assums that an .env file is supplied.
+
+## Run tests by
+
+- dotnet test - Runs all tests
+- dotnet test --filter "ClassName=GenWikiTests.SampleTests" - run the sample test to make sure Playwright is up and runnig
+- dotnet test --filter "ClassName=GenWikiTests.Tests.ExampleTest" - Runs all tests in class ExampleTest
+- dotnet test --filter "TestCategory=WordCount" - Run all tests with test category "WordCount"
+- dotnet test --filter "TestCategory=WordCount" --logger "console;verbosity=detailed" - Run with more visible output
+- dotnet test --filter "TestCategory=Wikitext" --logger "trx;LogFileName=test_results.trx;verbosity=detailed" - to output result to trx
+- dotnet test --filter "TestCategory=LinkValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"
+- dotnet test --filter "TestCategory=DarkModeValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"
+
+## Add reports by
+
+- allure generate TestResults/ --clean
+- allure open
+
+## Assumptions
+
+- env file is supplied
+- .env file path is <Any path>\wiki-gen-playwright\.env
