@@ -12,9 +12,9 @@ public class BasePage
     {
         _page = page;
         string envFileDirectory = DirectoryUtils.GetNthParentDirectory(4);
-        Console.WriteLine($"envFileDirectory ------> : {envFileDirectory}");
+        Console.WriteLine($"Loading .env File from Directory: {envFileDirectory}");
         Env.Load($"{envFileDirectory}\\.env"); // loads .env from project root
-
+        Console.WriteLine($"BasePage initialized with URL: {Url}");
     }
 
     public string Url => Environment.GetEnvironmentVariable("BASE_URL");

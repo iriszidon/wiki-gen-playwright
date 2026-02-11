@@ -23,6 +23,7 @@ public class DebuggingFeaturesSectionPage : BasePage
         string subTitleText = await DebuggingFeaturesSectionSubTitle.TextContentAsync();
         string contentText = await DebuggingFeaturesSectionContent.TextContentAsync();
         string result = $"{TextUtils.NormalizeTextWithCharsOnly(sectionText)} {TextUtils.NormalizeTextWithCharsOnly(subTitleText)} {TextUtils.NormalizeTextWithCharsOnly(contentText)}";
+        Console.WriteLine($"Normalized Text: {result}");
         return result;
     }
 }

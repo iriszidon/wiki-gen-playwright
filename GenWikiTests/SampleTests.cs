@@ -1,12 +1,16 @@
-namespace GenWikiTests;
+using Allure.Net.Commons;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[TestClass]
-public class SampleTests
+namespace GenWikiTests
 {
-    [TestMethod]
-    public void HealthCheckupTest()
+    [TestClass]
+    public class SampleTests
     {
-        Console.WriteLine("Playwright is up and running.");
-        Assert.IsTrue(true);
+        [TestMethod]
+        public void HealthCheckupTest()
+        {
+            Console.WriteLine("Playwright is up and running.");
+            Assert.IsTrue(true);
+        }
     }
 }

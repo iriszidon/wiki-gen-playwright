@@ -15,6 +15,7 @@ public class ExternalLinksPage : BasePage
 
     public async Task ClickShowButtonAsync()
     {
+        Console.WriteLine("Click 'Show' button.");
         await showMsDevToolsLinkButton.ClickAsync();
     }
 
@@ -61,6 +62,7 @@ public class ExternalLinksPage : BasePage
 
     public async Task VerifyAllItemsAreLinks(IEnumerable<ILocator> technologiesLists, string linkType)
     {
+        Console.WriteLine($"Verifying that all items are '{linkType}'...");
         foreach (var list in technologiesLists)
         {
             bool isTheItemALink;
@@ -83,7 +85,7 @@ public class ExternalLinksPage : BasePage
                     throw new ArgumentException($"Invalid link type: {linkType}");
             }
             string listText = await list.TextContentAsync();
-            Console.WriteLine(listText);
+            // Console.WriteLine(listText);
             Assert.IsTrue(isTheItemALink, $"List item '{listText}' is not a text link. {additionalInfo}");
         }
     }

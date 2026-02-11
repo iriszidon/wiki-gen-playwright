@@ -18,12 +18,14 @@ public class PlaywrightWikiPage : BasePage
 
     public async Task<string> GetHtmlElementClassAsync()
     {
+        Console.WriteLine("Getting 'class' attribute of <html> element.");
         return await HtmlElement.GetAttributeAsync("class") ?? string.Empty;
     }
 
     public async Task<bool> IsDarkModeEnabledAsync()
     {
         string htmlClass = await GetHtmlElementClassAsync();
+        Console.WriteLine($"Check if dark mode is enabled.");
         return htmlClass.Contains("skin-theme-clientpref-night");
     }
 }

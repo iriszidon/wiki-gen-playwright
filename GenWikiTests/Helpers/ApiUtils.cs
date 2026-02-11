@@ -31,7 +31,7 @@ namespace GenWikiTests.Helpers
         public static void LoadEnvVariables()
         {
             string envFileDirectory = DirectoryUtils.GetNthParentDirectory(4);
-            Console.WriteLine($"envFileDirectory ------> : {envFileDirectory}");
+            Console.WriteLine($".env File Directory is : {envFileDirectory}");
             Env.Load($"{envFileDirectory}\\.env"); // loads .env from project root
         }
     }
