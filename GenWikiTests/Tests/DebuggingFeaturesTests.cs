@@ -1,7 +1,6 @@
 using GenWikiTests.Pages;
 using GenWikiTests.Helpers;
 
-
 namespace GenWikiTests.Tests
 {
     [TestClass]

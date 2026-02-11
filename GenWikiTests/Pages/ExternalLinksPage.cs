@@ -1,7 +1,4 @@
 using Microsoft.Playwright;
-using GenWikiTests.Helpers;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Linq;
 
 namespace GenWikiTests.Pages;
 
@@ -14,9 +11,7 @@ public class ExternalLinksPage : BasePage
 
     public ILocator showMsDevToolsLinkButton => _page.GetByRole(AriaRole.Button, new() { Name = "show" }).First;
     public ILocator msLinksTable => _page.Locator("//div[@aria-labelledby='Microsoft_development_tools6288']");
-    // public IEnumerable<ILocator> tableRows => msLinksTable.Locator("tr").AllAsync().Result.Skip(1); // Skip header row
     public IEnumerable<ILocator> tableRowsLists => msLinksTable.Locator("//ul/li").AllAsync().Result.Skip(3);
-
 
     public async Task ClickShowButtonAsync()
     {

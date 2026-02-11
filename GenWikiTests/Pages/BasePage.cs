@@ -1,5 +1,4 @@
 using Microsoft.Playwright;
-using System.Threading.Tasks;
 using DotNetEnv;
 using GenWikiTests.Helpers;
 namespace GenWikiTests.Pages;
