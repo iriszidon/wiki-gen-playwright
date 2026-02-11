@@ -21,22 +21,37 @@
 
 ## Run tests by
 
-- Run all tests
-  `dotnet test`
-- Run the sample test to make sure Playwright is up and runnig
-  `dotnet test --filter "ClassName=GenWikiTests.SampleTests" `
-- Run all tests in class ExampleTest
-  `dotnet test --filter "ClassName=GenWikiTests.Tests.ExampleTest"`
-- Run all tests with test category "WordCount"
-  `dotnet test --filter "TestCategory=WordCount" `
-- Run with more visible output
-  `dotnet test --filter "TestCategory=WordCount" --logger "console;verbosity=detailed" `
-- to output result to trx
-  `dotnet test --filter "TestCategory=Wikitext" --logger "trx;LogFileName=test_results.trx;verbosity=detailed" `
-- Run with LinkValidation categoty
-  `dotnet test --filter "TestCategory=LinkValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"`
-- Run with DarkModeValidation categoty
-  `dotnet test --filter "TestCategory=DarkModeValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"`
+### Run all tests
+
+`dotnet test`
+
+### Run the sample test to make sure Playwright is up and runnig
+
+`dotnet test --filter "ClassName=GenWikiTests.SampleTests" `
+
+### Run all tests in class ExampleTest
+
+`dotnet test --filter "ClassName=GenWikiTests.Tests.ExampleTest"`
+
+### Run all tests with test category "WordCount"
+
+`dotnet test --filter "TestCategory=WordCount" `
+
+### Run with more visible output
+
+`dotnet test --filter "TestCategory=WordCount" --logger "console;verbosity=detailed" `
+
+### To output result to trx
+
+`dotnet test --filter "TestCategory=Wikitext" --logger "trx;LogFileName=test_results.trx;verbosity=detailed" `
+
+### Run with LinkValidation categoty
+
+`dotnet test --filter "TestCategory=LinkValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"`
+
+### Run with DarkModeValidation categoty
+
+`dotnet test --filter "TestCategory=DarkModeValidation" --logger "trx;LogFileName=test_results.trx;verbosity=detailed"`
 
 ## Add reports by
 
