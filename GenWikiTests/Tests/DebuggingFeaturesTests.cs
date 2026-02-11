@@ -8,7 +8,7 @@ namespace GenWikiTests.Tests
     {
         [TestMethod]
         [TestCategory("WordCount")]
-        [DescriptionAttribute("Count unique words using UI and API and compare results")]
+        [DescriptionAttribute("Task 1: Count unique words using UI and API and compare results")]
         public async Task GetTextFromUITest()
         {
             var wikiPlaywrightMainPage = new PlaywrightWikiPage(_page);

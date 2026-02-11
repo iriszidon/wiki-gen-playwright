@@ -8,7 +8,7 @@ namespace GenWikiTests.Tests
         [DataTestMethod]
         [TestCategory("DarkModeValidation")]
         [DescriptionAttribute("Task 3: Validate that all the “technology names” under this section are a text link")]
-        public async Task SwitchToDarkMode()
+        public async Task SwitchToDarkModeTest()
         {
             var wikiPlaywrightMainPage = new PlaywrightWikiPage(_page);
             await wikiPlaywrightMainPage.NavigateAsync();
