@@ -61,4 +61,4 @@
 ## Assumptions
 
 - env file is supplied
-- .env file path is <Any path>\wiki-gen-playwright\.env
+- .env file path is C:<YourRootPath>\wiki-gen-playwright\.env
