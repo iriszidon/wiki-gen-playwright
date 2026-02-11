@@ -19,7 +19,8 @@ namespace GenWikiTests.Tests
             string uiSectionText = await debuggingFeaturesSectionPage.GetNormalizedTextAsync();
             Console.WriteLine(TextUtils.CountUniqueWords(uiSectionText));
             // Get the text using Wki Parse API 
-            string apiSectionText = await ApiUtils.GetDebuggingFeaturesWikiTextAsync("json", "Playwright_(software)", 5);
+            int sectiobnIndex = 5; // Assuming the "Debugging features" section is the 5th section (index starts from 0)
+            string apiSectionText = await ApiUtils.GetDebuggingFeaturesWikiTextAsync("json", "Playwright_(software)", sectiobnIndex);
             string sectionTextWithoutWikiRef = TextUtils.RemoveWikiReferenceToolTip(apiSectionText, "ref");
             string normalizedSectionText = TextUtils.NormalizeTextWithCharsOnly(sectionTextWithoutWikiRef);
             // Compare the results

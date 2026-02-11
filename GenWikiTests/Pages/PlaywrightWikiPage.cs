@@ -4,19 +4,17 @@ namespace GenWikiTests.Pages;
 
 public class PlaywrightWikiPage : BasePage
 {
-
     public ILocator ExternalLinksSection => _page.Locator("#toc-External_links");
-    public ILocator DebuggingFeaturesLink { get; }
+    public ILocator DebuggingFeaturesLink => _page.Locator("a:has-text(\"Debugging features\")");
     public ILocator ColorModeButton => _page.Locator("#skin-client-pref-skin-theme-value-night");
     public ILocator HtmlElement => _page.Locator("html");
-    public Task ClickDebuggingFeaturesAsync() => DebuggingFeaturesLink.ClickAsync();
-    public Task ClickExternalLinksAsync() => ExternalLinksSection.ClickAsync();
-
-    public Task ClickColorModeButtonAsync() => ColorModeButton.ClickAsync();
     public PlaywrightWikiPage(IPage page) : base(page)
     {
-        DebuggingFeaturesLink = page.Locator("a:has-text(\"Debugging features\")");
+        this._page = page;
     }
+    public Task ClickDebuggingFeaturesAsync() => DebuggingFeaturesLink.ClickAsync();
+    public Task ClickExternalLinksAsync() => ExternalLinksSection.ClickAsync();
+    public Task ClickColorModeButtonAsync() => ColorModeButton.ClickAsync();
 
     public async Task<string> GetHtmlElementClassAsync()
     {
